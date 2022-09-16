@@ -1,6 +1,14 @@
-h1{
-    font-size: 43px;
+
+#top {
+    background-color: rgba(50, 168, 162);
+    padding: 5px 0px;
+    text-align: center;
+
 }
-html{
-    background: purple;
+#subheading{
+    background-color: white;
+}
+html, body {
+    margin:0 ;
+    background-color: orange;
 }
