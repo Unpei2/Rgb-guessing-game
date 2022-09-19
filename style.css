@@ -1,14 +1,39 @@
 
 #top {
-    background-color: rgba(50, 168, 162);
+    background-color: rgb(50, 168, 162);
     padding: 5px 0px;
     text-align: center;
+    color: white;
+    font-family: cursive;
 
 }
 #subheading{
-    background-color: white;
+    background-color: white; 
+    padding-top: 1px;
+    
+
 }
 html, body {
     margin:0 ;
-    background-color: orange;
+    background-color: rgb(44, 44, 44);
+    text-align: center;
+    
+}
+#newcolor, #easy, #hard{
+    font-family: cursive;
+    border:none;
+    color:rgb(50, 168, 162);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 10px;
+    
+}
+#newcolor:hover, #easy:hover, #hard:hover{
+    color:white;
+    background-color: rgb(50, 168, 162);
+
+}
+#b1,#b2,#b3,#b4,#b5,#b6{
+    padding: 75px 75px;
+    margin: 50px 50px;
 }
