@@ -4,6 +4,8 @@ let box2= document.getElementById("b3")
 let box3 = document.getElementById("b4")
 let box4 = document.getElementById("b5")
 let box5 = document.getElementById("b6")
+let rgbdisplay = document.getElementById("rgbdisplay")
+
 box0.addEventListener("click", b1)
 box1.addEventListener("click", b2)
 box2.addEventListener("click", b3)
