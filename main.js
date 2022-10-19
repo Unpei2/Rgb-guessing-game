@@ -46,7 +46,9 @@ for (x = 0;x < 6 ;x++){
 randomstuff()
 console.log(randomlist)
 function displaycolors(){
-    
+    let select = randomInt(0, 5)
+    console.log(select)
+    rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].b}, ${randomlist[select].g}`
     box0.style.backgroundColor = `rgb(${randomlist[0].r}, ${randomlist[0].g}, ${randomlist[0].b})`
     box1.style.backgroundColor = `rgb(${randomlist[1].r}, ${randomlist[1].g}, ${randomlist[1].b})`
     box2.style.backgroundColor = `rgb(${randomlist[2].r}, ${randomlist[2].g}, ${randomlist[2].b})`
@@ -64,5 +66,9 @@ function randomintoarray(r, g, b){
 }
 
 
-
+//  llllll
+// (>)(<)--
+// | ___ |
+//  \ __/
+// ~onii chan~
 
