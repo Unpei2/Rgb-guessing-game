@@ -5,6 +5,12 @@ let box3 = document.getElementById("b4")
 let box4 = document.getElementById("b5")
 let box5 = document.getElementById("b6")
 let rgbdisplay = document.getElementById("rgbdisplay")
+let newcolor = document.getElementById("newcolor")
+let displaystreak = document.getElementById("streak")
+let displayhighscore = document.getElementById("highscore")
+let select = randomInt(0, 6)
+let streak = 0
+let highscore = 0
 
 box0.addEventListener("click", b1)
 box1.addEventListener("click", b2)
@@ -12,26 +18,33 @@ box2.addEventListener("click", b3)
 box3.addEventListener("click", b4)
 box4.addEventListener("click", b5)
 box5.addEventListener("click", b6)
+newcolor.addEventListener("click", addnew)
 
 function b1 (){
-    console.log("Pressed b1")
+    check(0)
 }
 function b2 (){
-    console.log("Pressed b2")
+    check(1)
 }
 function b3 (){
-    console.log("Pressed b3")
+    check(2)
 }
 function b4 (){
-    console.log("Pressed b4")
+    check(3)
 }
 function b5 (){
-    console.log("Pressed b5")
+    check(4)
 }
 function b6 (){
-    console.log("Pressed b6")
+    check(5)
 }
+function addnew (){
+    randomlist = []
+    randomstuff()
+    select = randomInt(0, 6)
+    console.log(select)
 
+}
 randomlist = []
 function randomstuff(){
 for (x = 0;x < 6 ;x++){
@@ -45,9 +58,9 @@ for (x = 0;x < 6 ;x++){
 }
 randomstuff()
 console.log(randomlist)
+gethighscore()
 function displaycolors(){
-    let select = randomInt(0, 5)
-    console.log(select)
+     
     rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].b}, ${randomlist[select].g}`
     box0.style.backgroundColor = `rgb(${randomlist[0].r}, ${randomlist[0].g}, ${randomlist[0].b})`
     box1.style.backgroundColor = `rgb(${randomlist[1].r}, ${randomlist[1].g}, ${randomlist[1].b})`
@@ -55,16 +68,54 @@ function displaycolors(){
     box3.style.backgroundColor = `rgb(${randomlist[3].r}, ${randomlist[3].g}, ${randomlist[3].b})`
     box4.style.backgroundColor = `rgb(${randomlist[4].r}, ${randomlist[4].g}, ${randomlist[4].b})`
     box5.style.backgroundColor = `rgb(${randomlist[5].r}, ${randomlist[5].g}, ${randomlist[5].b})`
-
+    
+    
     
 }
+function check(boxnum){
+    right = false
+    wrong = false
+    if (randomlist[boxnum].r == randomlist[select].r 
+        && randomlist[boxnum].g == randomlist[select].g 
+        && randomlist[boxnum].b == randomlist[select].b){
+        
+        alert("Correct")
+        right = true
+    }   else {
+        wrong = true
+        alert("Incorrect")
+    }
+    if (right){
+        addnew()
+        if (highscore <= streak){
+            streak++
+            highscore++
+        }   else {
+            streak++
+        }
+    }   else if (wrong){
+        streak = 0
 
+    }
+    displaystreak.innerHTML = streak
+    displayhighscore.innerHTML = highscore 
+    savehighscore()
+}
 function randomintoarray(r, g, b){
     return {
         r, g, b
     }
 }
-
+function savehighscore(){
+    sethighscore = JSON.stringify(highscore)
+    localStorage.setItem("streak", sethighscore)
+}
+function gethighscore(){
+    let gethighscore = localStorage.getItem("streak")
+    displayhighscore.innerHTML = highscore 
+    return JSON.parse(gethighscore) ?? 0
+    
+}
 
 //  llllll
 // (>)(<)--

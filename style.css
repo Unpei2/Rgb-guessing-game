@@ -37,3 +37,8 @@ html, body {
     padding: 75px 75px;
     margin: 50px 50px;
 }
+#streakdiv {
+    color:white;
+    font-family: cursive;
+    font-size: 50px;
+}
