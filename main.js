@@ -1,53 +1,101 @@
 let box0 = document.getElementById("b1")
 let box1 = document.getElementById("b2")
-let box2= document.getElementById("b3")
+let box2 = document.getElementById("b3")
 let box3 = document.getElementById("b4")
 let box4 = document.getElementById("b5")
 let box5 = document.getElementById("b6")
+let box6 = document.getElementById("b7")
+let box7 = document.getElementById("b8")
+let box8 = document.getElementById("b9")
+
+let easy = document.getElementById("easy")
+let hard = document.getElementById("hard")
+let easydiv = document.getElementById("easy mode")
+let harddiv = document.getElementById("hard mode")
+
 let rgbdisplay = document.getElementById("rgbdisplay")
 let newcolor = document.getElementById("newcolor")
 let displaystreak = document.getElementById("streak")
 let displayhighscore = document.getElementById("highscore")
-let select = randomInt(0, 6)
+
+let boxes = 9
+let select = randomInt(0, boxes)
 let streak = 0
-let highscore = 0
+let highscore = gethighscore()
 
-box0.addEventListener("click", b1)
-box1.addEventListener("click", b2)
-box2.addEventListener("click", b3)
-box3.addEventListener("click", b4)
-box4.addEventListener("click", b5)
-box5.addEventListener("click", b6)
+box0.addEventListener("click", b0)
+box1.addEventListener("click", b1)
+box2.addEventListener("click", b2)
+box3.addEventListener("click", b3)
+box4.addEventListener("click", b4)
+box5.addEventListener("click", b5)
+box6.addEventListener("click", b6)
+box7.addEventListener("click", b7)
+box8.addEventListener("click", b8)
+easy.addEventListener("click", easymode)
+hard.addEventListener("click", hardmode)
 newcolor.addEventListener("click", addnew)
-
-function b1 (){
+function easymode(){
+    boxes = 3
+    harddiv.style.visibility = "hidden";
+    addnew()
+}
+function hardmode(){
+    boxes = 9
+    harddiv.style.visibility = "visible";
+    addnew()
+}
+function b0 (){
     check(0)
 }
-function b2 (){
+function b1 (){
     check(1)
 }
-function b3 (){
+function b2 (){
     check(2)
 }
-function b4 (){
+function b3 (){
     check(3)
 }
-function b5 (){
+function b4 (){
     check(4)
 }
-function b6 (){
+function b5 (){
     check(5)
+}
+function b6 (){
+    check(6)
+}
+function b7 (){
+    check(7)
+}
+function b8 (){
+    check(8)
 }
 function addnew (){
     randomlist = []
     randomstuff()
-    select = randomInt(0, 6)
+    select = randomInt(0, boxes)
     console.log(select)
+    console.log(randomlist)
+    if (boxes == 3){
+        box0.style.visibility = "visible";
+        box1.style.visibility = "visible";
+        box2.style.visibility = "visible";
+        
+    }   else {
+        box3.style.visibility = "visible";
+        box4.style.visibility = "visible";
+        box5.style.visibility = "visible";
+        box6.style.visibility = "visible";
+        box7.style.visibility = "visible";
+        box8.style.visibility = "visible";
+    }
 
 }
 randomlist = []
 function randomstuff(){
-for (x = 0;x < 6 ;x++){
+for (x = 0; x < boxes ;x++){
     red = randomInt(0,256)
     green = randomInt(0,256)
     blue = randomInt(0,256)
@@ -61,14 +109,22 @@ console.log(randomlist)
 gethighscore()
 function displaycolors(){
      
-    rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].b}, ${randomlist[select].g}`
-    box0.style.backgroundColor = `rgb(${randomlist[0].r}, ${randomlist[0].g}, ${randomlist[0].b})`
-    box1.style.backgroundColor = `rgb(${randomlist[1].r}, ${randomlist[1].g}, ${randomlist[1].b})`
-    box2.style.backgroundColor = `rgb(${randomlist[2].r}, ${randomlist[2].g}, ${randomlist[2].b})`
-    box3.style.backgroundColor = `rgb(${randomlist[3].r}, ${randomlist[3].g}, ${randomlist[3].b})`
-    box4.style.backgroundColor = `rgb(${randomlist[4].r}, ${randomlist[4].g}, ${randomlist[4].b})`
-    box5.style.backgroundColor = `rgb(${randomlist[5].r}, ${randomlist[5].g}, ${randomlist[5].b})`
-    
+    rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].g}, ${randomlist[select].b}`
+    if (boxes == 3){
+        box0.style.backgroundColor = `rgb(${randomlist[0].r}, ${randomlist[0].g}, ${randomlist[0].b})`
+        box1.style.backgroundColor = `rgb(${randomlist[1].r}, ${randomlist[1].g}, ${randomlist[1].b})`
+        box2.style.backgroundColor = `rgb(${randomlist[2].r}, ${randomlist[2].g}, ${randomlist[2].b})`
+    }   else {
+        box0.style.backgroundColor = `rgb(${randomlist[0].r}, ${randomlist[0].g}, ${randomlist[0].b})`
+        box1.style.backgroundColor = `rgb(${randomlist[1].r}, ${randomlist[1].g}, ${randomlist[1].b})`
+        box2.style.backgroundColor = `rgb(${randomlist[2].r}, ${randomlist[2].g}, ${randomlist[2].b})`
+        box3.style.backgroundColor = `rgb(${randomlist[3].r}, ${randomlist[3].g}, ${randomlist[3].b})`
+        box4.style.backgroundColor = `rgb(${randomlist[4].r}, ${randomlist[4].g}, ${randomlist[4].b})`
+        box5.style.backgroundColor = `rgb(${randomlist[5].r}, ${randomlist[5].g}, ${randomlist[5].b})`
+        box6.style.backgroundColor = `rgb(${randomlist[6].r}, ${randomlist[6].g}, ${randomlist[6].b})`
+        box7.style.backgroundColor = `rgb(${randomlist[7].r}, ${randomlist[7].g}, ${randomlist[7].b})`
+        box8.style.backgroundColor = `rgb(${randomlist[8].r}, ${randomlist[8].g}, ${randomlist[8].b})`
+    }
     
     
 }
@@ -83,7 +139,6 @@ function check(boxnum){
         right = true
     }   else {
         wrong = true
-        alert("Incorrect")
     }
     if (right){
         addnew()
@@ -95,7 +150,26 @@ function check(boxnum){
         }
     }   else if (wrong){
         streak = 0
-
+        if (boxnum == 0){
+            box0.style.visibility = "hidden";
+        }   else if (boxnum == 1){
+            box1.style.visibility = "hidden";
+        }   else if (boxnum == 2){
+            box2.style.visibility = "hidden";
+        }   else if (boxnum == 3){
+            box3.style.visibility = "hidden";
+        }   else if (boxnum == 4){
+            box4.style.visibility = "hidden";
+        }   else if (boxnum == 5){
+            box5.style.visibility = "hidden";
+        }   else if (boxnum == 6){
+            box6.style.visibility = "hidden";
+        }   else if (boxnum == 7){
+            box7.style.visibility = "hidden";
+        }   else if (boxnum == 8){
+            box8.style.visibility = "hidden";
+        }
+        
     }
     displaystreak.innerHTML = streak
     displayhighscore.innerHTML = highscore 
@@ -108,12 +182,12 @@ function randomintoarray(r, g, b){
 }
 function savehighscore(){
     sethighscore = JSON.stringify(highscore)
-    localStorage.setItem("streak", sethighscore)
+    localStorage.setItem("highscore", sethighscore)
 }
 function gethighscore(){
-    let gethighscore = localStorage.getItem("streak")
-    displayhighscore.innerHTML = highscore 
-    return JSON.parse(gethighscore) ?? 0
+    let getscore = localStorage.getItem("highscore")
+    displayhighscore.innerHTML = getscore
+    return JSON.parse(getscore) ?? 0
     
 }
 
