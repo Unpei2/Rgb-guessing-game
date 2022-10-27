@@ -21,7 +21,8 @@ let displayhighscore = document.getElementById("highscore")
 let boxes = 9
 
 let streak = 0
-let highscore = gethighscore()
+let easyhighscore = geteasyhighscore()
+let hardhighscore = gethardhighscore()
 
 box0.addEventListener("click", b0)
 box1.addEventListener("click", b1)
@@ -37,10 +38,16 @@ hard.addEventListener("click", hardmode)
 newcolor.addEventListener("click", addnew)
 function easymode(){
     boxes = 3
+    streak = 0
+    displaystreak.innerHTML = streak
+    displayhighscore.innerHTML = easyhighscore 
     addnew()
 }
 function hardmode(){
+    streak = 0
+    displaystreak.innerHTML = streak
     boxes = 9
+    displayhighscore.innerHTML = hardhighscore 
     addnew()
 }
 function b0 (){
@@ -70,13 +77,18 @@ function b7 (){
 function b8 (){
     check(8)
 }
+select = randomInt(0, boxes)
+
 function addnew (){
     randomlist = []
     randomstuff()
     select = randomInt(0, boxes)
     console.log(select)
-    console.log(randomlist)
-    if (boxes == 3){
+    if (boxes === 3){
+        box0.style.visibility = "visible";
+        box1.style.visibility = "visible";
+        box2.style.visibility = "visible";
+
         box3.style.visibility = "hidden";
         box4.style.visibility = "hidden";
         box5.style.visibility = "hidden";
@@ -85,6 +97,9 @@ function addnew (){
         box8.style.visibility = "hidden";
         
     }   else {
+        box0.style.visibility = "visible";
+        box1.style.visibility = "visible";
+        box2.style.visibility = "visible";
         box3.style.visibility = "visible";
         box4.style.visibility = "visible";
         box5.style.visibility = "visible";
@@ -106,8 +121,9 @@ for (x = 0; x < boxes ;x++){
     displaycolors()
 }
 randomstuff()
-console.log(randomlist)
-gethighscore()
+geteasyhighscore()
+gethardhighscore()
+
 function displaycolors(){
     let select = randomInt(0, boxes)
     rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].g}, ${randomlist[select].b}`
@@ -130,26 +146,16 @@ function displaycolors(){
     
 }
 function check(boxnum){
-    right = false
-    wrong = false
     if (randomlist[boxnum].r == randomlist[select].r 
         && randomlist[boxnum].g == randomlist[select].g 
         && randomlist[boxnum].b == randomlist[select].b){
         
         alert("Correct")
-        right = true
-    }   else {
-        wrong = true
-    }
-    if (right){
         addnew()
-        if (highscore <= streak){
-            streak++
-            highscore++
-        }   else {
-            streak++
-        }
-    }   else if (wrong){
+        addhighscore(boxes)
+        
+    }   
+    else {
         streak = 0
         if (boxnum == 0){
             box0.style.visibility = "hidden";
@@ -170,11 +176,31 @@ function check(boxnum){
         }   else if (boxnum == 8){
             box8.style.visibility = "hidden";
         }
-        
     }
+   
     displaystreak.innerHTML = streak
-    displayhighscore.innerHTML = highscore 
     savehighscore()
+}
+function addhighscore(boxnumbers){
+    if (boxnumbers === 3){
+        if (easyhighscore <= streak){
+            
+            easyhighscore++
+            displayhighscore.innerHTML = easyhighscore 
+
+        }   else {
+            streak++
+        }
+    }   else if (boxnumbers === 9){
+            if (hardhighscore <= streak){
+                streak++
+                hardhighscore++
+                displayhighscore.innerHTML = hardhighscore 
+
+            }  else {
+                streak++
+        } 
+        }  
 }
 function randomintoarray(r, g, b){
     return {
@@ -182,17 +208,25 @@ function randomintoarray(r, g, b){
     }
 }
 function savehighscore(){
-    sethighscore = JSON.stringify(highscore)
-    localStorage.setItem("highscore", sethighscore)
+    seteasyhighscore = JSON.stringify(easyhighscore)
+    localStorage.setItem("easyhighscore", seteasyhighscore)
+
+    sethardhighscore = JSON.stringify(hardhighscore)
+    localStorage.setItem("hardhighscore", sethardhighscore)
+
 }
-function gethighscore(){
-    let getscore = localStorage.getItem("highscore")
-    displayhighscore.innerHTML = getscore
-    return JSON.parse(getscore) ?? 0
-    
+function geteasyhighscore(){
+    let geteasyscore = localStorage.getItem("easyhighscore")
+    displayhighscore.innerHTML = geteasyscore
+    return JSON.parse(geteasyscore) ?? 0  
+}
+function gethardhighscore(){
+    let gethardscore = localStorage.getItem("hardhighscore")
+    displayhighscore.innerHTML = gethardscore
+    return JSON.parse(gethardscore) ?? 0
 }
 
-//  llllll
+// llllll
 // (>)(<)--
 // | ___ |
 //  \ __/
