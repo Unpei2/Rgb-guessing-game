@@ -19,7 +19,7 @@ let displaystreak = document.getElementById("streak")
 let displayhighscore = document.getElementById("highscore")
 
 let boxes = 9
-let select = randomInt(0, boxes)
+
 let streak = 0
 let highscore = gethighscore()
 
@@ -37,12 +37,10 @@ hard.addEventListener("click", hardmode)
 newcolor.addEventListener("click", addnew)
 function easymode(){
     boxes = 3
-    harddiv.style.visibility = "hidden";
     addnew()
 }
 function hardmode(){
     boxes = 9
-    harddiv.style.visibility = "visible";
     addnew()
 }
 function b0 (){
@@ -79,9 +77,12 @@ function addnew (){
     console.log(select)
     console.log(randomlist)
     if (boxes == 3){
-        box0.style.visibility = "visible";
-        box1.style.visibility = "visible";
-        box2.style.visibility = "visible";
+        box3.style.visibility = "hidden";
+        box4.style.visibility = "hidden";
+        box5.style.visibility = "hidden";
+        box6.style.visibility = "hidden";
+        box7.style.visibility = "hidden";
+        box8.style.visibility = "hidden";
         
     }   else {
         box3.style.visibility = "visible";
@@ -108,7 +109,7 @@ randomstuff()
 console.log(randomlist)
 gethighscore()
 function displaycolors(){
-     
+    let select = randomInt(0, boxes)
     rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].g}, ${randomlist[select].b}`
     if (boxes == 3){
         box0.style.backgroundColor = `rgb(${randomlist[0].r}, ${randomlist[0].g}, ${randomlist[0].b})`
