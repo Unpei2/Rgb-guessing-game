@@ -19,13 +19,23 @@ html, body {
     text-align: center;
     
 }
+#correct {
+    font-family: cursive;
+    font-size: 25px;
+    color: rgb(50, 168, 162);
+    padding: 20px;
+    margin-left: 80px;
+    
+}
 #newcolor, #easy, #hard{
     font-family: cursive;
     border:none;
+    font-size: 20px;
     color:rgb(50, 168, 162);
     background-color: white;
     padding: 20px;
     box-shadow: 10px;
+    margin-left: 80px;
     
 }
 #newcolor:hover, #easy:hover, #hard:hover{
@@ -42,4 +52,12 @@ html, body {
     color:white;
     font-family: cursive;
     font-size: 50px;
+}
+#modal {
+    background-color: black;
+    color: white;
+    font-family: cursive;
+    font-size: 32px;
+    padding: 50px 20px;
+    margin: 100px 100px;
 }

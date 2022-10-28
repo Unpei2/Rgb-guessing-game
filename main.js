@@ -17,7 +17,7 @@ let rgbdisplay = document.getElementById("rgbdisplay")
 let newcolor = document.getElementById("newcolor")
 let displaystreak = document.getElementById("streak")
 let displayhighscore = document.getElementById("highscore")
-
+let right = document.getElementById("correct")
 let boxes = 9
 
 let streak = 0
@@ -150,12 +150,13 @@ function check(boxnum){
         && randomlist[boxnum].g == randomlist[select].g 
         && randomlist[boxnum].b == randomlist[select].b){
         
-        alert("Correct")
+        right.innerHTML = "CORRECT"
         addnew()
         addhighscore(boxes)
         
     }   
     else {
+        right.innerHTML = "WRONG"
         streak = 0
         if (boxnum == 0){
             box0.style.visibility = "hidden";
