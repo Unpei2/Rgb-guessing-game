@@ -118,6 +118,8 @@ for (x = 0; x < boxes ;x++){
     randomlist.push(randomintoarray(red,green,blue))
     
     }
+    console.log(randomlist)
+
     displaycolors()
 }
 randomstuff()

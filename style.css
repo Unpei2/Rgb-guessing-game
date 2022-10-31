@@ -46,6 +46,7 @@ html, body {
 #b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8,#b9{
     padding: 75px 75px;
     margin: 50px 50px;
+    border:none;
     
 }
 #streakdiv {
@@ -53,11 +54,4 @@ html, body {
     font-family: cursive;
     font-size: 50px;
 }
-#modal {
-    background-color: black;
-    color: white;
-    font-family: cursive;
-    font-size: 32px;
-    padding: 50px 20px;
-    margin: 100px 100px;
-}
+
