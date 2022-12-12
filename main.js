@@ -81,8 +81,9 @@ select = randomInt(0, boxes);
 
 function addnew() {
   randomlist = [];
-  randomstuff();
   select = randomInt(0, boxes);
+  randomstuff();
+
   console.log(select);
   if (boxes === 3) {
     box0.style.visibility = "visible";
@@ -183,6 +184,7 @@ function addhighscore(boxnumbers) {
   if (boxnumbers === 3) {
     if (easyhighscore <= streak) {
       easyhighscore++;
+      streak++;
       displayhighscore.innerHTML = easyhighscore;
     } else {
       streak++;
