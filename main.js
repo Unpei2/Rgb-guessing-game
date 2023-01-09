@@ -1,3 +1,4 @@
+// making variables for each button
 let box0 = document.getElementById("b1");
 let box1 = document.getElementById("b2");
 let box2 = document.getElementById("b3");
@@ -7,23 +8,23 @@ let box5 = document.getElementById("b6");
 let box6 = document.getElementById("b7");
 let box7 = document.getElementById("b8");
 let box8 = document.getElementById("b9");
-
+// different modes
 let easy = document.getElementById("easy");
 let hard = document.getElementById("hard");
 let easydiv = document.getElementById("easy mode");
 let harddiv = document.getElementById("hard mode");
-
+// score saving things
 let rgbdisplay = document.getElementById("rgbdisplay");
 let newcolor = document.getElementById("newcolor");
 let displaystreak = document.getElementById("streak");
 let displayhighscore = document.getElementById("highscore");
 let right = document.getElementById("correct");
 let boxes = 9;
-
+// getting score from local storage
 let streak = 0;
 let easyhighscore = geteasyhighscore();
 let hardhighscore = gethardhighscore();
-
+// event listeners for buttons
 box0.addEventListener("click", b0);
 box1.addEventListener("click", b1);
 box2.addEventListener("click", b2);
@@ -36,6 +37,7 @@ box8.addEventListener("click", b8);
 easy.addEventListener("click", easymode);
 hard.addEventListener("click", hardmode);
 newcolor.addEventListener("click", addnew);
+// easy mode function
 function easymode() {
   boxes = 3;
   streak = 0;
@@ -43,6 +45,7 @@ function easymode() {
   displayhighscore.innerHTML = easyhighscore;
   addnew();
 }
+// hard mode function
 function hardmode() {
   streak = 0;
   displaystreak.innerHTML = streak;
@@ -50,6 +53,7 @@ function hardmode() {
   displayhighscore.innerHTML = hardhighscore;
   addnew();
 }
+// Buttons with the colors
 function b0() {
   check(0);
 }
@@ -77,8 +81,9 @@ function b7() {
 function b8() {
   check(8);
 }
+// selecting the random color
 select = randomInt(0, boxes);
-
+// creating a new set of colors
 function addnew() {
   randomlist = [];
   select = randomInt(0, boxes);
@@ -108,7 +113,9 @@ function addnew() {
     box8.style.visibility = "visible";
   }
 }
+
 randomlist = [];
+// creating the random colors
 function randomstuff() {
   for (x = 0; x < boxes; x++) {
     red = randomInt(0, 256);
@@ -123,7 +130,7 @@ function randomstuff() {
 randomstuff();
 geteasyhighscore();
 gethardhighscore();
-
+// giving the buttons a color
 function displaycolors() {
   rgbdisplay.innerHTML = `${randomlist[select].r}, ${randomlist[select].g}, ${randomlist[select].b}`;
   if (boxes == 3) {
@@ -142,6 +149,7 @@ function displaycolors() {
     box8.style.backgroundColor = `rgb(${randomlist[8].r}, ${randomlist[8].g}, ${randomlist[8].b})`;
   }
 }
+// checking if the clicked box is correct, if incorrect the box/button disappears
 function check(boxnum) {
   console.log(randomlist[boxnum]);
   console.log(randomlist[select]);
@@ -180,6 +188,7 @@ function check(boxnum) {
   displaystreak.innerHTML = streak;
   savehighscore();
 }
+// highscore system
 function addhighscore(boxnumbers) {
   if (boxnumbers === 3) {
     if (easyhighscore <= streak) {
@@ -199,6 +208,7 @@ function addhighscore(boxnumbers) {
     }
   }
 }
+// pushing random color into an array
 function randomintoarray(r, g, b) {
   return {
     r,
@@ -206,6 +216,7 @@ function randomintoarray(r, g, b) {
     b,
   };
 }
+// save easy highscore to local storage
 function savehighscore() {
   seteasyhighscore = JSON.stringify(easyhighscore);
   localStorage.setItem("easyhighscore", seteasyhighscore);
@@ -213,11 +224,13 @@ function savehighscore() {
   sethardhighscore = JSON.stringify(hardhighscore);
   localStorage.setItem("hardhighscore", sethardhighscore);
 }
+// get easy highscore from local storage
 function geteasyhighscore() {
   let geteasyscore = localStorage.getItem("easyhighscore");
   displayhighscore.innerHTML = geteasyscore;
   return JSON.parse(geteasyscore) ?? 0;
 }
+// get hard high score from local storage
 function gethardhighscore() {
   let gethardscore = localStorage.getItem("hardhighscore");
   displayhighscore.innerHTML = gethardscore;
